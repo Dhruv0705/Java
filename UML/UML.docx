@@ -1,0 +1,19 @@
+Determine what can be done to each object:
+I wanted the UML design to be based upon the Client. as the client picks what level according to employee
+they are charged per hour depending on the employee level. Once the timecard is filed out from start to end
+time the bill will be calcualated accroding to the spefic rate depending on the level that then later the 
+client will be charged with that they will have to pay for. 
+
+Determin ehwat each object is allowed to do to other objects.
+Timecard is able to be changed and added according to the client and employee timecard from the start and end time.
+The client can not be changed as its attributed is the main class.
+The employee can not change its name and id but the rate can be changed from bill.java as well as the client on who they choice.
+The bill can be changed by all three objects.
+
+Determine the parts of each object that will be visiable to other objects. 
+The bill would only be visbale to the client
+the client can view the employee infomration 
+no one can change idNumber
+the timecard can be visable by the client and employee.
+
+
