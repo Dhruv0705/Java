@@ -3,6 +3,7 @@ package JavaCourse.IntroductionToDataStructures;
 public class DataStructureNAbstractDataTypes {
     
     public class DataStructure {
+        
         /*
     
         What is a Data Structure?
@@ -52,5 +53,6 @@ public class DataStructureNAbstractDataTypes {
                                     Golf Cart
                                     Truck                        
         */
+        
     }
 }
