@@ -13,7 +13,7 @@ public class LList {
     public Node head;
     public Node tail;
 
-    //
+    // Keeps up with the size of the list
     public int length;
     
     public Node next;
@@ -83,7 +83,7 @@ public class LList {
         }
         else{
 
-            // seperator for current postion within temp value and current value to be used within the for loop 
+            // separator for current position within temp value and current value to be used within the for loop 
             Node temp, position;
 
             // Finds the middle position
@@ -107,7 +107,7 @@ public class LList {
         length++;
     }
 
-    // Function to add new node to the end of list when reciving a value
+    // Function to add new node to the end of list when receiving a value
     public void addEnd(int val) {
 
         // Creates a new Node holding the value entered and null
