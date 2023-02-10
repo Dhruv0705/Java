@@ -1,4 +1,3 @@
-package MiniAssignment1;
 //  Dhruv Patel
 //  2/11/2023
 //  Write a program to compute the greatest common denominator (GCD) 
@@ -6,12 +5,20 @@ package MiniAssignment1;
 //      Ask the user to enter the two numbers. 
 //      Write a function for the GCD and a function for the LCM.
 
+package MiniAssignment1;
 import java.util.Scanner;
 
 public class GCDandLCM {
 
   // GCD Function to compute the GCD of two numbers using the formula: gcd(a, b) = gcd(b, a mod b)
   public static int GCD(int FirstNumber, int SecondNumber) {
+    
+    // Error Handling: if the SecondNumber is 0, then:
+    if (SecondNumber == 0) {
+
+      // return the FirstNumber
+      return FirstNumber;
+    }
 
     // returns the formula SecondNumber, and the remainder or modulo of FirstNumber divided by SecondNumber
     return GCD(SecondNumber, FirstNumber % SecondNumber);
@@ -19,6 +26,14 @@ public class GCDandLCM {
 
   // LCM Function to compute the LCM of two numbers using the formula: lcm(a, b) = a * b / gcd(a, b)
   public static int LCM(int FirstNumber, int SecondNumber) {
+
+
+    // Error Handling: if the GCD of FirstNumber and SecondNumber is 0, then: 
+    if (GCD(FirstNumber, SecondNumber) == 0) {
+
+      // return 0
+      return 0;
+    }
 
     // returns the multiplication of FirstNumber and SecondNumber divided by the GCD of FirstNumber and SecondNumber
     return FirstNumber * SecondNumber / GCD(FirstNumber, SecondNumber);
