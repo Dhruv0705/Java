@@ -1,19 +1,22 @@
-Determine what can be done to each object:
-I wanted the UML design to be based upon the Client. as the client picks what level according to employee
-they are charged per hour depending on the employee level. Once the timecard is filed out from start to end
-time the bill will be calcualated accroding to the spefic rate depending on the level that then later the 
-client will be charged with that they will have to pay for. 
+Object Interactions:
+    The UML design is centered around the Client, 
+    who selects the level of the employee 
+    and is charged per hour based on that level. 
+    Once the timecard is filled out with start and end times, 
+    the bill is calculated based on the specific rate 
+    determined by the employee's level. 
+    The Client will be responsible for paying the calculated bill.
 
-Determin ehwat each object is allowed to do to other objects.
-Timecard is able to be changed and added according to the client and employee timecard from the start and end time.
-The client can not be changed as its attributed is the main class.
-The employee can not change its name and id but the rate can be changed from bill.java as well as the client on who they choice.
-The bill can be changed by all three objects.
+Allowed Object Actions:
+    The Timecard can be edited and added by both the Client and Employee, 
+    reflecting the start and end times worked. 
+    The Client's information cannot be changed as it is the main class. 
+    The Employee's name and ID cannot be altered, but their rate can be modified 
+    by the Bill class and the Client's choice. The Bill itself can be modified by all three objects.
 
-Determine the parts of each object that will be visiable to other objects. 
-The bill would only be visbale to the client
-the client can view the employee infomration 
-no one can change idNumber
-the timecard can be visable by the client and employee.
+Visibility of Object Parts:
+    The Bill is only visible to the Client. The Client can view the Employee's information, 
+    but the Employee's ID number is not accessible for changes. 
+    The Timecard is visible to both the Client and Employee.
 
 
