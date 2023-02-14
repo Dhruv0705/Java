@@ -15,12 +15,12 @@ public class Pyramid {
             while (inputtedNumber <5 || inputtedNumber >10);
 
                 // to get the row for the inputted number is greater then or equal to 1 will minus 1 until rows is = 1 
-                // So loop will continue as the user enter 3 will set value to row and until row is not equal to 1 the loop will run as the value of row is minising 1 each loop.
+                // So loop will continue as the user enter 3 will set value to row and until row is not equal to 1 the loop will run as the value of row is missing 1 each loop.
                 for (int rows = inputtedNumber; rows >= 1; --rows) {
                     System.out.print( "Row" + " " + rows + " :" );
                     
                     // for column, as column is not 1 or less then rows then the column will be incremented by one to enter the value to new colum
-                    // loop starting at the bottom of the list will continue to loop as long as rows is not equal to column if not will add a new row until the 5th colums as the inputed value is 5. 
+                    // loop starting at the bottom of the list will continue to loop as long as rows is not equal to column if not will add a new row until the 5th column as the inputted value is 5. 
                     for (int column = 1;  column >=  rows; ++ column) {
 
                         // prints inputted value from column and rows

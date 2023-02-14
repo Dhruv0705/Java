@@ -26,7 +26,7 @@ import bridges.connect.DataSource;
 // The BFS Create a visited array from scratch and designate the first vertex as visited. Till the line is empty, as it
 // Remove the queue's leading vertex that is visited and noted to adds all the vertex unvisited neighbors to the queue. 
 
-// The link class created a linked list class that will be implemented with the lquene class that will initialize and reinitialize the queue.
+// The link class created a linked list class that will be implemented with the queue class that will initialize and reinitialize the queue.
 // in forth with the queue class that returns each section with the Queue class and value. 
 
 // This class carries out the computation of Bacon Number of an actor.
@@ -50,7 +50,7 @@ public class KevinBaconScaffold {
     bridges.setDataStructure(gr);
     bridges.visualize();
 
-    getBaconNumber(gr, "Kevin_Bacon_(I)", "Cate_Blanchett");
+    getBaconNumber(gr, "Kevin_Bacon_(I)", "Cate_blanche's");
     bridges.setDataStructure(gr);
     bridges.visualize();
   }
@@ -73,7 +73,7 @@ public class KevinBaconScaffold {
         movie = actor_list.get(k).getMovie();
 
         // our graph needs to have a unique set of actors and movies;
-        // so create the actor and movie vertices only if they dont already
+        // so create the actor and movie vertices only if they don't already
         // exist; use an STL map to check for that
 
         // first get the graph's vertex list
@@ -92,7 +92,7 @@ public class KevinBaconScaffold {
         gr.addEdge(actor, movie);
         gr.addEdge(movie, actor);
 
-        // TO DO : Highlight "Cate_Blanchett" node and the movie nodes
+        // TO DO : Highlight "Cate_Blanche's" node and the movie nodes
         // she is connected to  in "orange" and do the same for
         //  "Kevin_Bacon_(I)" in "green"
         //  To set node attributes, you can do something like
@@ -103,8 +103,8 @@ public class KevinBaconScaffold {
         //  and ElementVisualizer classes)
         // specify colors by their names, "red", for example
 
-        // Creates two actor and movie nodes visilization set to ones color
-        if(actor.equals("Cate_Blanchett")) {
+        // Creates two actor and movie nodes virilization set to ones color
+        if(actor.equals("Cate_Blanche's")) {
         	LinkVisualizer link = gr.getLinkVisualizer(actor, movie);
         	gr.getLinkVisualizer(actor, movie).setColor("orange");
         	gr.getVisualizer(actor).setColor("orange");
