@@ -1,4 +1,4 @@
-package DataStructure.DynamicArray;
+package DynamicArray;
 
 
 public class IntArray implements Iterable<Integer> {
