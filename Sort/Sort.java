@@ -102,11 +102,13 @@ public class Sort {
     }
   };
   
-// NOTE: Within 3 sorting algorithms: Insertion Sort was found to be the fastest as the best case scenario, followed by Selection Sort as the average case scnario, and Bubble Sort with the worst runtime and worst case scnario. 
+// NOTE: Within 3 sorting algorithms: Insertion Sort was found to be the fastest as the best case scenario, followed by Selection Sort as the average case scenario, and Bubble Sort with the worst runtime and worst case scenario. 
 
 // Big-O notation 
+// Insertion Sort: O(N^2) - Worst case scenario
+// Selection Sort: O(N^2) - Worst case scenario
+// Bubble Sort: O(N^2) - Worst case scenario
 
-  
   public static void main(String[] args) throws IOException, RateLimitException, InterruptedException {
 
 	
