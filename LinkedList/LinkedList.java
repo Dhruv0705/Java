@@ -97,28 +97,28 @@ class LinkedList
     public static void main(String[] args)
     {
         /* Start with the empty list */
-        LinkedList llist = new LinkedList();
+        LinkedList lList = new LinkedList();
  
         // Insert 6.  So linked list becomes 6->NulList
-        llist.append(6);
+        lList.append(6);
  
         // Insert 7 at the beginning. So linked list becomes
         // 7->6->NulList
-        llist.push(7);
+        lList.push(7);
  
         // Insert 1 at the beginning. So linked list becomes
         // 1->7->6->NulList
-        llist.push(1);
+        lList.push(1);
  
         // Insert 4 at the end. So linked list becomes
         // 1->7->6->4->NulList
-        llist.append(4);
+        lList.append(4);
  
         // Insert 8, after 7. So linked list becomes
         // 1->7->8->6->4->NulList
-        llist.insertAfter(llist.head.next, 8);
+        lList.insertAfter(lList.head.next, 8);
  
         System.out.println("\nCreated Linked list is: ");
-        llist.printList();
+        lList.printList();
     }
 }
