@@ -15,7 +15,6 @@ import bridges.base.SLelement;
 import bridges.base.Element;
 import bridges.base.Edge;
 import bridges.base.GraphAdjListSimple;
-import bridges.base.LinkVisualizer;
 import bridges.data_src_dependent.ActorMovieIMDB;
 import bridges.connect.DataSource;
 
@@ -105,13 +104,12 @@ public class KevinBaconScaffold {
 
         // Creates two actor and movie nodes virilization set to ones color
         if(actor.equals("Cate_Blanche's")) {
-        	LinkVisualizer link = gr.getLinkVisualizer(actor, movie);
         	gr.getLinkVisualizer(actor, movie).setColor("orange");
         	gr.getVisualizer(actor).setColor("orange");
         	gr.getVisualizer(movie).setColor("orange");
         }
         if(actor.equals("Kevin_Bacon_(I)")) {
-        	LinkVisualizer link = gr.getLinkVisualizer(actor, movie);
+        	gr.getLinkVisualizer(actor, movie);
         	gr.getLinkVisualizer(actor, movie).setColor("green");
         	gr.getVisualizer(actor).setColor("green");
         	gr.getVisualizer(movie).setColor("green");
