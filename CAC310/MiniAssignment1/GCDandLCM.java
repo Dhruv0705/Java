@@ -42,26 +42,26 @@ public class GCDandLCM {
   // Main Function to display the GCD and LCM of two numbers inputted by the user
   public static void main(String[] args) {
 
-    // Create a Scanner object
-    Scanner input = new Scanner(System.in);
+    try (// Create a Scanner object
+    Scanner input = new Scanner(System.in)) {
+      // Ask user to enter two numbers:
+      // Ask the user to enter the FirstNumber
+      System.out.println("Enter First Number: ");
+      int FirstNumber = input.nextInt();
 
-    // Ask user to enter two numbers:
-    // Ask the user to enter the FirstNumber
-    System.out.println("Enter First Number: ");
-    int FirstNumber = input.nextInt();
+      // Ask the user to enter the SecondNumber
+      System.out.println("Enter Second Number: ");
+      int SecondNumber = input.nextInt();
+ 
 
-    // Ask the user to enter the SecondNumber
-    System.out.println("Enter Second Number: ");
-    int SecondNumber = input.nextInt();
-  
+      // Set the GCD and LCM variables by calling the GCD and LCM functions for the two inputted numbers
+      int GreatestCommonDenominator = GCD(FirstNumber, SecondNumber);
+      int LeastCommonMultiple = LCM(FirstNumber, SecondNumber);
 
-    // Set the GCD and LCM variables by calling the GCD and LCM functions for the two inputted numbers
-    int GreatestCommonDenominator = GCD(FirstNumber, SecondNumber);
-    int LeastCommonMultiple = LCM(FirstNumber, SecondNumber);
-
-    // Display the result of GCD and LCM
-    System.out.println("Greatest Common Denominator (GCD) of " + FirstNumber + " and " + SecondNumber + " is " + GreatestCommonDenominator);
-    System.out.println("Least Common Multiple (LCM) of " + FirstNumber + " and " + SecondNumber + " is " + LeastCommonMultiple);
+      // Display the result of GCD and LCM
+      System.out.println("Greatest Common Denominator (GCD) of " + FirstNumber + " and " + SecondNumber + " is " + GreatestCommonDenominator);
+      System.out.println("Least Common Multiple (LCM) of " + FirstNumber + " and " + SecondNumber + " is " + LeastCommonMultiple);
+    }
 
   }
 }
