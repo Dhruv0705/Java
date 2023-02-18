@@ -4,7 +4,7 @@
 // Dr.Wagner 
 
 
-// Remove packgage to run program
+// Remove package to run program
 package SnakeGame;
 
 import bridges.base.NamedColor;
@@ -12,7 +12,7 @@ import bridges.base.NamedSymbol;
 import bridges.games.NonBlockingGame;
 
 // Used http://bridgesuncc.github.io/doc/java-api/current/html/classbridges_1_1games_1_1_non_blocking_game.html#a4ff32a8ba8aeb3f438751729f7380d16
-// To recive data from NonBlockGame Class and documintation throughout program
+// To receive data from NonBlockGame Class and documentation throughout program
 class Snake extends NonBlockingGame {
 
   // Game settings
@@ -71,7 +71,7 @@ class Snake extends NonBlockingGame {
 	// meaning that it cannot turn on itself
 	  
 
-    // NonBlockingGame Key function for setting the current direction to the enum Direction or its corrispoding 
+    // NonBlockingGame Key function for setting the current direction to the enum Direction or its corresponding 
     // Direction if the last direction was not equal to the opposite direction
 
     // Condition to stop user input for snake to return the same direction of the user input.
@@ -113,8 +113,8 @@ class Snake extends NonBlockingGame {
     }
 
 
-    // The Snake will switch directions once the snake leaves the baord to less then 0 the snake will come back up from the bottom up. 
-    // y is getting incremented by -1 each time as the snake moves in whihc once the sanke goes less then 0 will come back up from the bottom. 
+    // The Snake will switch directions once the snake leaves the board to less then 0 the snake will come back up from the bottom up. 
+    // y is getting incremented by -1 each time as the snake moves in which once the snake goes less then 0 will come back up from the bottom. 
     switch (direction) {
 			case NORTH:
 				head.y--;
@@ -144,10 +144,11 @@ class Snake extends NonBlockingGame {
 
   // Method to plant the apple to not plant inside snake
   public void plantApple() {
+
     // Randomly position the apple, taking care to ensure that it doesn't
     // intersect with the snake position.
 
-  // Sets x and y variable to interger value.
+  // Sets x and y variable to integer value.
     int x;
     int y;
 
@@ -156,19 +157,19 @@ class Snake extends NonBlockingGame {
         x = Math.abs(random.nextInt() % 29);
         y = Math.abs(random.nextInt() % 29);
       
-        // Assumes there is no collisiions 
+        // Assumes there is no collisions 
         boolean noCollision = true;
 
-        // While loop if current is not null then x and y is current cordinents when current value is now = to current.next
+        // While loop if current is not null then x and y is current condiments when current value is now = to current.next
         Block current = head;
 
-        // While current is not null will compare x and y if they are the same then there is a collession
-        // Apple can not be planted on the x and y corridinates of the snake nodes. 
+        // While current is not null will compare x and y if they are the same then there is a collection
+        // Apple can not be planted on the x and y coordinates of the snake nodes. 
         while (current != null) {
           if (current.x == x && current.y == y) {
             noCollision = false;
 
-            // break loop once if statemnet is not true
+            // break loop once if statement is not true
             break;
           }
           
@@ -181,7 +182,7 @@ class Snake extends NonBlockingGame {
           break;
       }
 
-      // Plants the apple block on the board using the x and y coridinates
+      // Plants the apple block on the board using the x and y coordinates
       apple.x = x;
       apple.y = y;
   }
@@ -213,7 +214,7 @@ class Snake extends NonBlockingGame {
   // Creates a new 
     Block current = head.next;
 
-    //While curent is not null:
+    //While current is not null:
       while (current != null) {
 
         // If head x and y is equal to the current x and y then exit the game (if snake ate itself)
@@ -229,11 +230,11 @@ class Snake extends NonBlockingGame {
   public void paint() {
 
   
-    // For loops to create the colums and rows grid layout within the board
+    // For loops to create the column and rows grid layout within the board
     for (int i = 0; i < gridColumns; ++i) {
 			for (int j = 0; j < gridRows; ++j) {
 
-        // if else statment to set board color to forest green or green if if statment is false.
+        // if else statement to set board color to forest green or green if if statement is false.
 				if (i % 2 == j % 2)
 					setBGColor(i, j, bc1);
 				else
