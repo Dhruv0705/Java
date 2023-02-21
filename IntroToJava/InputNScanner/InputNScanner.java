@@ -5,37 +5,40 @@ import java.util.Scanner;
 
 public class InputNScanner {
     
+    // Input and Scanner
     public static void main(String[] args){
 
-        // Input scanner
-        Scanner scanner = new Scanner (System.in);
+        try (// Input scanner
+        Scanner scanner = new Scanner (System.in)) {
+            // String
+            System.out.print("Enter a string: ");
+            String strScanned = scanner.next();
 
-        // String
-        System.out.print("Enter a string: ");
-        String strscanned = scanner.next();
+            // INT
+            System.out.print("Enter a integer: ");
+            int intScanned = scanner.nextInt();
 
-        // INT
-        System.out.print("Enter a integer: ");
-        int intscanned = scanner.nextInt();
+            // Convert string to a integer (.parseInt())
+            System.out.print("Enter a string to be converted to integer: ");
+            String parseScanned = scanner.next();
+            
+            // Boolean
+            System.out.print("Enter a boolean: ");
+            boolean booScanned = scanner.nextBoolean();
 
-        // Convert string to a integer (.parseInt())
-        System.out.print("Enter a string to be converted to integer: ");
-        String parsescanned = scanner.next();
-        int x = Integer.parseInt(parsescanned);
+            // Double
+            System.out.print("Enter a float: ");
+            double doubsScanned = scanner.nextDouble(); 
 
-        // Boolean
-        System.out.print("Enter a boolean: ");
-        boolean booscanned = scanner.nextBoolean();
+            System.out.println(strScanned);
+            System.out.println(intScanned);
+            System.out.println(parseScanned);
+            System.out.println(booScanned);
+            System.out.println(doubsScanned);
+        } catch (NumberFormatException e) {
 
-        // Float
-        System.out.print("Enter a float: ");
-        double doubscanned = scanner.nextDouble(); 
-
-        System.out.println(strscanned);
-        System.out.println(intscanned);
-        System.out.println(parsescanned);
-        System.out.println(booscanned);
-        System.out.println(doubscanned);
+            // Print error
+            e.printStackTrace();
+        }
     }
-    
 }
