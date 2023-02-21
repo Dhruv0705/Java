@@ -107,11 +107,11 @@ class Book implements Comparator<Book>{
     // Compare function to compare the isbn of two books
     @Override
     public int compare(Book book1, Book book2) {
-        book1.getIsbn().compareTo(book2.getIsbn());
+        int CompareISBN = book1.getIsbn().compareTo(book2.getIsbn());
 
-        if (book1.getIsbn().compareTo(book2.getIsbn()) > 0) {
+        if (CompareISBN > 0) {
             return 1;
-        } else if (book1.getIsbn().compareTo(book2.getIsbn()) < 0) {
+        } else if (CompareISBN < 0) {
             return -1;
         } else {
             return 0;
