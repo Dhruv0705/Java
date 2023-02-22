@@ -1,4 +1,4 @@
-package Java.DataStructure.DynamicArray;
+package DataStructure.DynamicArray;
 
 @SuppressWarnings("unchecked")
 public class DynamicArray<T> implements Iterable<T> {

@@ -1,13 +1,5 @@
-package Java.DataStructure.DynamicArray;
+package DataStructure.DynamicArray;
 
-
-    /**
- * Most of the time when you use an array it's to place integers inside of it, so why not have a
- * super fast integer only array? This file contains an implementation of an integer only array
- * which can outperform Java's ArrayList by about a factor of 10-15x! Enjoy!
- *
- * @author William Fiset, william.alexandre.fiset@gmail.com
- */
 
 public class IntArray implements Iterable<Integer> {
 
