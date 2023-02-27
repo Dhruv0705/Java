@@ -11,9 +11,10 @@ public class ReflectionUtilities {
 	 * This is really yucky, but the reflection things we need like Class.isInstance(arg)
 	 * just don't work when the arg is a primitive.  Luckily, we're only worrying with ints.
 	 * This method works - don't change it.
-	 */
+	*/
+
 	private static boolean typesMatchInts(Class<?> maybeIntClass, Object maybeIntObj){
-		System.out.println("I'm checking on "+maybeIntObj);
+		System.out.println("I'm checking on "+ maybeIntObj);
 		System.out.println(maybeIntObj.getClass());
 		try{
 			return (maybeIntClass == int.class) &&
@@ -42,24 +43,23 @@ public class ReflectionUtilities {
 			return false;
 		}
 
-	
 		// starting at 0 for each element in the formals array incrementing by 1
 		for (int i = 0; i < formals.length; i++) {
 
-			// if the formals array is equal to int.class
+			// if the formals array is equal to int.class primitive type
 			if (formals[i] == int.class) {
 
-				// if the typesMatchInts method 
+				// if the formals array index is not equal to the actuals array index
 				if (!typesMatchInts(formals[i], actuals[i])) {
 
-					// returns false
+					// return false
 					return false;
 				}
 			
-			// else if the formals array is not equal to int.class
+			// else if the formals array is not equal to int.class primitive type then 
 			} else {
 
-				// if the formals array is not equal to the actuals array
+				// if the formals array index is not equal to the actuals array
 				if (!formals[i].isInstance(actuals[i])) {
 
 					// return false
@@ -101,9 +101,49 @@ public class ReflectionUtilities {
 	 * see which has formal parameters to match the actual parameters given.  When
 	 * you find one that matches, invoke it.
 	 */
+
 	public static Object callMethod (Object target, String name, Object[] args)
 	{
+		// if the target is null
+		if (target == null) {
 
+			// return null
+			return null;
+		}
+
+		// get the class of the target object
+		Class<?> targetClass = target.getClass();
+
+		// get the methods of the target object
+		Method[] methods = targetClass.getMethods();
+
+		// for each method in the methods array
+		for (Method method : methods) {
+
+			// if the method name is equal to the name parameter
+			if (method.getName().equals(name)) {
+
+				// get the formal parameters of the method
+				Class<?>[] formalParams = method.getParameterTypes();
+
+				// if the typesMatch method is true
+				if (typesMatch(formalParams, args)) {
+
+					// try to invoke the method
+					try {
+						return method.invoke(target, args);
+
+					// catch the exception
+					} catch (Exception e) {
+
+						// print the stack trace
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+
+		// return null
 		return null;
 	}
 	
