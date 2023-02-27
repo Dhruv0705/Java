@@ -104,15 +104,24 @@ class Book implements Comparator<Book>{
                 + quantity + "]";
     }
 
-    // Compare function to compare the isbn of two books
+    // Override function needed to declare superclass Comparator
     @Override
+
+    // Compare function to compare the isbn of two books
     public int compare(Book book1, Book book2) {
+
+        // Compares the isbn of the two books set to the variable CompareISBN
         int CompareISBN = book1.getIsbn().compareTo(book2.getIsbn());
 
+        // If the isbn of book1 is greater than book2, return 1
         if (CompareISBN > 0) {
             return 1;
+        
+        // If the isbn of book1 is less than book2, return -1
         } else if (CompareISBN < 0) {
             return -1;
+
+        // If the isbn of book1 is equal to book2, return 0
         } else {
             return 0;
         }          
@@ -138,8 +147,11 @@ public class BookInventorySystem {
         Books.add (new Book("987654321", "C++ Programming", author2, 284.54, 26));
         Books.add (new Book("597683218", "Python Programming", author3, 378.25, 31));
         
-        // Sort the ArrayList of Books by name
+        // Sort the ArrayList of Books by ISBN
+        // Comparator.comparing() is a static method that returns a Comparator object
         Comparator<Book> CompareBooks = Comparator.comparing(Book::getIsbn);
+
+        // Sort the ArrayList of Books by ISBN
         Books.sort(CompareBooks);
 
         // Print the Book Inventory System
