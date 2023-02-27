@@ -85,6 +85,48 @@ public class ReflectionUtilities {
 	public static Object createInstance (String name, Object[] args)
 	{
 
+		if (name == null) {
+			return null;
+		}
+
+		// get the class of the name parameter
+		Class<?> targetClass = null;
+		try {
+			targetClass = Class.forName(name);
+
+		// catch the exception
+		} catch (ClassNotFoundException e) {
+
+			// print the stack trace
+			e.printStackTrace();
+		}
+
+		// get the constructors of the target class
+		Constructor<?>[] constructors = targetClass.getConstructors();
+
+		// for each constructor in the constructors array
+		for(int i = 0; i < constructors.length; i++) {
+
+			// get the formal parameters of the constructor
+			Class<?>[] formalParams = constructors[i].getParameterTypes();
+
+			// if the typesMatch method is true
+			if (typesMatch(formalParams, args)) {
+
+				// try to invoke the constructor
+				try {
+					return constructors[i].newInstance(args);
+
+				// catch the exception
+				} catch (Exception e) {
+
+					// print the stack trace
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// return null
 		return null;
 	}
 	
