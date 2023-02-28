@@ -34,33 +34,33 @@ public class ReflectionUtilities {
 	 * provided above.  
 	 */
 
-	public static boolean typesMatch (Class<?>[] formals, Object[] actuals)
+	public static boolean typesMatch (Class<?>[] classes, Object[] objects)
 	{
-		// if the formals length is not equal to the actuals length, 
-		if (formals.length != actuals.length) {
+		// if the classes length is not equal to the objects length, 
+		if (classes.length != objects.length) {
 
 			// return false
 			return false;
 		}
 
-		// starting at 0 for each element in the formals array incrementing by 1
-		for (int i = 0; i < formals.length; i++) {
+		// starting at 0 for each element in the classes array incrementing by 1
+		for (int i = 0; i < classes.length; i++) {
 
-			// if the formals array is equal to int.class primitive type
-			if (formals[i] == int.class) {
+			// if the classes array is equal to int.class primitive type
+			if (classes[i] == int.class) {
 
-				// if the formals array index is not equal to the actuals array index
-				if (!typesMatchInts(formals[i], actuals[i])) {
+				// if the classes array index is not equal to the objects array index
+				if (!typesMatchInts(classes[i], objects[i])) {
 
 					// return false
 					return false;
 				}
 			
-			// else if the formals array is not equal to int.class primitive type then 
+			// else if the classes array is not equal to int.class primitive type then 
 			} else {
 
-				// if the formals array index is not equal to the actuals array
-				if (!formals[i].isInstance(actuals[i])) {
+				// if the classes array index is not equal to the objects array
+				if (!classes[i].isInstance(objects[i])) {
 
 					// return false
 					return false;
@@ -68,8 +68,9 @@ public class ReflectionUtilities {
 			}
 		}
 
-		// return false if the formals array is not equal to the actuals array
-		return false;
+		// return true if the objects array is an instance of the classes array
+		return true;
+
 	}
 	
 	
