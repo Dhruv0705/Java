@@ -84,50 +84,8 @@ public class ReflectionUtilities {
 	 */
 	public static Object createInstance (String name, Object[] args)
 	{
-
-		if (name == null) {
-			return null;
-		}
-
-		// get the class of the name parameter
-		Class<?> targetClass = null;
-		try {
-			targetClass = Class.forName(name);
-
-		// catch the exception
-		} catch (ClassNotFoundException e) {
-
-			// print the stack trace
-			e.printStackTrace();
-		}
-
-		// get the constructors of the target class
-		Constructor<?>[] constructors = targetClass.getConstructors();
-
-		// for each constructor in the constructors array
-		for(int i = 0; i < constructors.length; i++) {
-
-			// get the formal parameters of the constructor
-			Class<?>[] formalParams = constructors[i].getParameterTypes();
-
-			// if the typesMatch method is true
-			if (typesMatch(formalParams, args)) {
-
-				// try to invoke the constructor
-				try {
-					return constructors[i].newInstance(args);
-
-				// catch the exception
-				} catch (Exception e) {
-
-					// print the stack trace
-					e.printStackTrace();
-				}
-			}
-		}
-
-		// return null
 		return null;
+		
 	}
 	
 	/*
@@ -146,45 +104,7 @@ public class ReflectionUtilities {
 
 	public static Object callMethod (Object target, String name, Object[] args)
 	{
-		// if the target is null
-		if (target == null) {
-
-			// return null
-			return null;
-		}
-
-		// get the class of the target object
-		Class<?> targetClass = target.getClass();
-
-		// get the methods of the target object
-		Method[] methods = targetClass.getMethods();
-
-		// for each method in the methods array
-		for (Method method : methods) {
-
-			// if the method name is equal to the name parameter
-			if (method.getName().equals(name)) {
-
-				// get the formal parameters of the method
-				Class<?>[] formalParams = method.getParameterTypes();
-
-				// if the typesMatch method is true
-				if (typesMatch(formalParams, args)) {
-
-					// try to invoke the method
-					try {
-						return method.invoke(target, args);
-
-					// catch the exception
-					} catch (Exception e) {
-
-						// print the stack trace
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-
+		
 		// return null
 		return null;
 	}
