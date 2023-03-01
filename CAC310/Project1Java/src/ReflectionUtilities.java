@@ -34,33 +34,33 @@ public class ReflectionUtilities {
 	 * provided above.  
 	 */
 
-	public static boolean typesMatch (Class<?>[] classes, Object[] objects)
+	public static boolean typesMatch (Class<?>[] formals, Object[] actuals)
 	{
-		// if the classes length is not equal to the objects length, 
-		if (classes.length != objects.length) {
+		// if the formals length is not equal to the actuals length, 
+		if (formals.length != actuals.length) {
 
 			// return false
 			return false;
 		}
 
-		// starting at 0 for each element in the classes array incrementing by 1
-		for (int i = 0; i < classes.length; i++) {
+		// starting at 0 for each element in the formals array incrementing by 1
+		for (int i = 0; i < formals.length; i++) {
 
-			// if the classes array is equal to int.class primitive type
-			if (classes[i] == int.class) {
+			// if the formals array is equal to int.class primitive type
+			if (formals[i] == int.class) {
 
-				// if the classes array index is not equal to the objects array index
-				if (!typesMatchInts(classes[i], objects[i])) {
+				// if the formals array index is not equal to the actuals array index
+				if (!typesMatchInts(formals[i], actuals[i])) {
 
 					// return false
 					return false;
 				}
 			
-			// else if the classes array is not equal to int.class primitive type then 
+			// else if the formals array is not equal to int.class primitive type then 
 			} else {
 
-				// if the classes array index is not equal to the objects array
-				if (!classes[i].isInstance(objects[i])) {
+				// if the formals array index is not equal to the actuals array
+				if (!formals[i].isInstance(actuals[i])) {
 
 					// return false
 					return false;
@@ -68,7 +68,7 @@ public class ReflectionUtilities {
 			}
 		}
 
-		// return true if the objects array is an instance of the classes array
+		// return true if the actuals array is an instance of the formals array
 		return true;
 
 	}
@@ -86,45 +86,39 @@ public class ReflectionUtilities {
 	public static Object createInstance (String name, Object[] args)
 	{
 
-		if (name == null) {
-			return null;
-		}
 
-		// get the class of the name parameter
-		Class<?> targetClass = null;
+		// create a class object
+		Class<?> c = null;
+
+		// try to create a class object
 		try {
-			targetClass = Class.forName(name);
 
-		// catch the exception
-		} catch (ClassNotFoundException e) {
+			// set the class object to the class of the name parameter
+			c = Class.forName(name);
 
-			// print the stack trace
-			e.printStackTrace();
-		}
+			// get the constructors of the target class
+			Constructor<?>[] constructors = c.getConstructors();
 
-		// get the constructors of the target class
-		Constructor<?>[] constructors = targetClass.getConstructors();
+			// for each constructor in the constructors array
+			for(int i = 0; i < constructors.length; i++) {
 
-		// for each constructor in the constructors array
-		for(int i = 0; i < constructors.length; i++) {
+				
+				// if the typesMatch method is true
+				if (typesMatch(constructors[i].getParameterTypes(), args)) {
 
-			// get the formal parameters of the constructor
-			Class<?>[] formalParams = constructors[i].getParameterTypes();
-
-			// if the typesMatch method is true
-			if (typesMatch(formalParams, args)) {
-
-				// try to invoke the constructor
-				try {
+					// return the constructor
 					return constructors[i].newInstance(args);
 
-				// catch the exception
-				} catch (Exception e) {
-
-					// print the stack trace
-					e.printStackTrace();
+					
 				}
 			}
+
+		// catch the exception
+		} catch (Exception e) {
+
+			// print the stack trace
+			return false;
+
 		}
 
 		// return null
@@ -147,43 +141,39 @@ public class ReflectionUtilities {
 
 	public static Object callMethod (Object target, String name, Object[] args)
 	{
-		// if the target is null
-		if (target == null) {
+		
+		try {
 
-			// return null
-			return null;
-		}
+			// get the class of the target object
+			Class<?> targetClass = target.getClass();
 
-		// get the class of the target object
-		Class<?> targetClass = target.getClass();
+			// get the methods of the target object
+			Method[] methods = targetClass.getMethods();
 
-		// get the methods of the target object
-		Method[] methods = targetClass.getMethods();
+			// for each method in the methods array
+			for (Method method : methods) {
 
-		// for each method in the methods array
-		for (Method method : methods) {
+				// if the method name is equal to the name parameter
+				if (method.getName().equals(name)) {
 
-			// if the method name is equal to the name parameter
-			if (method.getName().equals(name)) {
+					// get the formal parameters of the method
+					Class<?>[] formalParameter = method.getParameterTypes();
 
-				// get the formal parameters of the method
-				Class<?>[] formalParams = method.getParameterTypes();
+					// if the typesMatch method is true matching the formal parameters and the args
+					if (typesMatch(formalParameter, args)) {
 
-				// if the typesMatch method is true
-				if (typesMatch(formalParams, args)) {
-
-					// try to invoke the method
-					try {
-						return method.invoke(target, args);
-
-					// catch the exception
-					} catch (Exception e) {
-
-						// print the stack trace
-						e.printStackTrace();
+							// return once found  
+							return method.invoke(target, args);
 					}
 				}
 			}
+		}
+
+		// catch the exception
+		catch (Exception e) {
+
+			// print the stack trace
+			e.printStackTrace();
 		}
 
 		// return null
