@@ -78,13 +78,21 @@ public class Interpreter {
 	}
 	
 	
-	/* TODO: makeObject
+	/* makeObject
 	 * This method does the "process" job for making objects.
 	 * Don't forget to add the new object to the symbol table.
 	 * The String that is returned should be a basic message telling what happened.
 	 */
-	public String makeObject(ParseResults parse){		
-		return "oops.";
+	public String makeObject(ParseResults parse){
+		Object object = ReflectionUtilities.createInstance(parse.className, parse.arguments);
+		if (object == null) {
+			return "I could not create that object";
+		}
+
+		else {
+			mySymbolTable.put(parse.objectName, object);
+			return "I create a new object called:" + parse.objectName;
+		}
 	}
 	
 	/*
@@ -99,6 +107,23 @@ public class Interpreter {
 	 * and replacing it with something else.
 	 */
 	public String callMethod(ParseResults parse){
+
+		Object target = mySymbolTable.get(parse.objectName);
+		Object result = ReflectionUtilities.callMethod(target, parse.methodName, parse.arguments);
+
+		// test if result is equal to null 
+		if(result == null) {
+
+			// return the result
+			return "Result: " + result;
+		}
+
+		else { 
+			
+			
+		}
+		// else check if the output already exist in the symbols table
+
 		return "oops.";
 	}
 
