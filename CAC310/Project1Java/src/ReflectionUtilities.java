@@ -27,7 +27,7 @@ public class ReflectionUtilities {
 	}
 	
 	/*
-	 * TODO: typesMatch
+	 * typesMatch
 	 * Takes an array of Classes and an array of Objects and tells whether or not 
 	 * the object is an instance of the associated class, and that the two arrays are the
 	 * same length.  For objects, the isInstance method makes this easy.  For ints, use the method I 
@@ -74,7 +74,7 @@ public class ReflectionUtilities {
 	
 	
 	/*
-	 * TODO: createInstance
+	 * createInstance
 	 * Given String representing fully qualified name of a class and the
 	 * actual parameters, returns initialized instance of the corresponding 
 	 * class using matching constructor.  
@@ -84,12 +84,46 @@ public class ReflectionUtilities {
 	 */
 	public static Object createInstance (String name, Object[] args)
 	{
+
+		
+		try {
+
+			// get the class of the name
+			Class<?> c = Class.forName(name);
+
+			// get the constructors of the class
+			Constructor<?>[] constructors = c.getConstructors();
+
+			// for each constructor in the constructors array
+			for (Constructor<?> constructor : constructors) {
+
+				// get the parameter types of the constructor
+				Class<?>[] parameterTypes = constructor.getParameterTypes();
+
+				// if the types match the parameter types
+				if (typesMatch(parameterTypes, args)) {
+
+					// return the constructor
+					return constructor.newInstance(args);
+				}
+			}
+		
+		// catch the exception printing the error
+		} catch (Exception e) {
+
+			// print the stack trace
+			e.printStackTrace();
+		}
+
+
+
+		// return null
 		return null;
 		
 	}
 	
 	/*
-	 * TODO: callMethod
+	 * callMethod
 	 * Given a target object with a method of the given name that takes 
 	 * the given actual parameters, call the named method on that object 
 	 * and return the result. 
@@ -104,7 +138,37 @@ public class ReflectionUtilities {
 
 	public static Object callMethod (Object target, String name, Object[] args)
 	{
-		
+
+		// get the class of the target
+		Class<?> c = target.getClass();
+
+		// get the methods of the class
+		Method[] methods = c.getMethods();
+
+		// for each method in the methods array 
+		for (Method method : methods) {
+
+			// get the parameter types of the method
+			Class<?>[] parameterTypes = method.getParameterTypes();
+
+			// if the method name is equal to the name and the types match the parameter types
+			if (method.getName().equals(name) && typesMatch(parameterTypes, args)) {
+
+				// try to invoke the method
+				try {
+
+					// return the method
+					return method.invoke(target, args);
+
+				// catch the exception printing the error
+				} catch (Exception e) {
+
+					// print the stack trace
+					e.printStackTrace();
+				}
+			}
+		}
+
 		// return null
 		return null;
 	}

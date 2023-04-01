@@ -28,7 +28,7 @@ public class Tester extends TestCase{
 		try {
 			mClass = Class.forName("MyClass");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 			mClass = null;
 		}

@@ -54,28 +54,63 @@ public class Interpreter {
 	}
 	
 	/*
-	 * TODO: convertNameToInstance
+	 * convertNameToInstance
 	 * Given a name (identifier or literal) return the object.
 	 * If the name is in the symbol table, you can just return the object it is 
 	 * associated with.  If it's not in the symbol table, then it is either 
 	 * a String literal or it is an integer literal.  Check to see if the 
 	 * first character is quotation marks.  If so, create a new String object to
 	 * return that has the same characters as the name, just without the quotes.
+	 * 
 	 * If there aren't quotation marks, then it is an integer literal.  Use Integer.parseInt
 	 * to turn the String into an int.
 	 */
 	public Object convertNameToInstance(String name){
-		return null;
+
+		// check if the name is in the symbol table
+		if(mySymbolTable.containsKey(name)) {
+
+			// return the object associated with the name
+			return mySymbolTable.get(name);
+		}
+
+		// check if the first character is a quotation mark
+		else if (name.charAt(0) == '"') {
+
+			// return a new string object without the quotes
+			return new String(name.substring(1, name.length() - 1));
+		}
+
+		// otherwise, it is an integer literal
+		else {
+
+			// return the integer literal turns the string into an int
+			return Integer.parseInt(name);
+		}
+
 	}
 	
 	
-	/*TODO: convertNameToInstance.  
+	/*convertNameToInstance.  
 	 * Takes an array of Strings and converts all of them to their associated objects.
 	 * Simply call the other helper method of the same name on each item in the array.
 	 */
 	public Object[] convertNameToInstance(String[] names){
-		return null;
+
+		// create a new array of objects with the same length as the names array
+		Object[] objects = new Object[names.length];
+
+		// loop through the names array 
+		for(int i = 0; i < names.length; i++) {
+
+			// convert the name to an instance and add it to the objects array 
+			objects[i] = convertNameToInstance(names[i]);
+		}
+
+		// return the array of objects 
+		return objects;
 	}
+
 	
 	
 	/* makeObject
@@ -84,19 +119,43 @@ public class Interpreter {
 	 * The String that is returned should be a basic message telling what happened.
 	 */
 	public String makeObject(ParseResults parse){
+
+		// create a new object using the ReflectionUtilities class 
 		Object object = ReflectionUtilities.createInstance(parse.className, parse.arguments);
+
+		// test if the object is equal to null
 		if (object == null) {
+
+			// return the message
 			return "I could not create that object";
 		}
+		
+		// if the object already exist in the symbol table, replace it with the new object
+		else if(mySymbolTable.containsKey(parse.objectName)) {
 
-		else {
+			// remove the old object from the symbol table
+			mySymbolTable.remove(parse.objectName);
+
+			// add the new object to the symbol table
 			mySymbolTable.put(parse.objectName, object);
+
+			// return the message
+			return "I replaced the object called:" + parse.objectName;
+		}
+
+		// otherwise, add the new object to the symbol table
+		else {
+
+			// add the new object to the symbol table 
+			mySymbolTable.put(parse.objectName, object);
+
+			// return the message 
 			return "I create a new object called:" + parse.objectName;
 		}
 	}
 	
 	/*
-	 * TODO: callMethod
+	 * callMethod
 	 * This method does the "process" job for calling methods.
 	 * You MUST use the ReflectionUtilities to call the method for 
 	 * this to work, because ints can't be directly transformed into Objects.
@@ -108,7 +167,10 @@ public class Interpreter {
 	 */
 	public String callMethod(ParseResults parse){
 
+		// Get the object from the symbol table 
 		Object target = mySymbolTable.get(parse.objectName);
+
+		// call the method using the ReflectionUtilities class
 		Object result = ReflectionUtilities.callMethod(target, parse.methodName, parse.arguments);
 
 		// test if result is equal to null 
@@ -118,13 +180,20 @@ public class Interpreter {
 			return "Result: " + result;
 		}
 
+
 		else { 
 			
+			// remove the old object from the symbol table
+			mySymbolTable.remove(parse.objectName);
+
+			// add the new object to the symbol table
+			mySymbolTable.put(parse.objectName, result);
+
+			// return the result
+			return "Result: " + result;
 			
 		}
-		// else check if the output already exist in the symbols table
-
-		return "oops.";
+		
 	}
 
 }
