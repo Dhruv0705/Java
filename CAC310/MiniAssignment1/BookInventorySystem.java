@@ -6,7 +6,7 @@
 //      The main should have an arraylist where you will store a minimum of 3 books and two authors.
 //      Display the book inventory system in a readable way.
 
-package MiniAssignment1;
+package Java.CAC310.MiniAssignment1;
 import java.util.ArrayList;
 import java.util.Comparator;
 
