@@ -4,7 +4,7 @@
 // Dr.Wagner 
 
 // Remove package when running
-package Sort;
+package BSC.CAC310.Sort;
 
 import bridges.base.LineChart;
 import bridges.benchmark.SortingBenchmark;

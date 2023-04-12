@@ -4,7 +4,7 @@
 // Kevin Bacon Bridges Project
 
 
-package KevinBacon;
+package BSC.CAC310.KevinBacon;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.lang.String;

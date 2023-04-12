@@ -1,4 +1,4 @@
-package KevinBacon;
+package BSC.CAC310.KevinBacon;
 
 class Link<E> {
 	

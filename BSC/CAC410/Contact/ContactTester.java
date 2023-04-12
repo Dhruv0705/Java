@@ -1,4 +1,4 @@
-package Contact;
+package BSC.CAC410.Contact;
 
 import java.util.Scanner; 
 import java.util.ArrayList;

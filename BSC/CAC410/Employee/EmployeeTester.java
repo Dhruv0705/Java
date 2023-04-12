@@ -1,4 +1,4 @@
-package Employee;
+package BSC.CAC410.Employee;
 
 import java.util.Scanner; 
 import java.util.ArrayList;

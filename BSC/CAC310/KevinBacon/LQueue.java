@@ -1,4 +1,4 @@
-package KevinBacon;
+package BSC.CAC310.KevinBacon;
 
 	// Linked queue implementation
 	class LQueue<E> implements Queue<E> {

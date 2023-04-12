@@ -1,4 +1,4 @@
-package Contact;
+package BSC.CAC410.Contact;
 
 public class Contact {
 	private String name;

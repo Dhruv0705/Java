@@ -1,4 +1,4 @@
-package KevinBacon;
+package BSC.CAC310.KevinBacon;
 /** Source code example for "A Practical Introduction to Data
     Structures and Algorithm Analysis, 3rd Edition (Java)"
     by Clifford A. Shaffer

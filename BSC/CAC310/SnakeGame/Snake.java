@@ -5,7 +5,7 @@
 
 
 // Remove package to run program
-package SnakeGame;
+package BSC.CAC310.SnakeGame;
 
 import bridges.base.NamedColor;
 import bridges.base.NamedSymbol;

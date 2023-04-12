@@ -1,4 +1,4 @@
-package Employee;
+package BSC.CAC410.Employee;
 
 public class Employee{
     private String name;
