@@ -7,8 +7,6 @@
  * Do not change anything in this file.
  */
 import junit.framework.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Tester extends TestCase{
 	//private ReflectionUtilities myMethods;
@@ -92,11 +90,5 @@ public class Tester extends TestCase{
 		assertTrue(answer3.equals("HeyHeyHey"));
 		Object answer4 = ReflectionUtilities.callMethod(mine, "print", new Object[]{});
 		assertTrue(answer4 == null);
-	}
-
-	private static TestSuite suite() {
-		TestSuite suite = new TestSuite("Test for ReflectionUtilities.java");
-		suite.addTestSuite(Tester.class);
-		return suite;
 	}
 }
