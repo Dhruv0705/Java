@@ -1,4 +1,5 @@
 package JavaCourse.DSA_BootCamp_Java._05_Java_Program;
+import java.util.Scanner;
 
 /* First Java Program:
     - Input / Output
@@ -41,6 +42,32 @@ public class Main {
         // Println - It is a method of the class PrintStream.
         // "Hello World!" - It is the argument of the method Println.
         System.out.println("Hello World!");
+
+        // Input / Output
+        // The scanner class is used to get the input from the user.
+        // Input - Taking input from the user.
+        // new - It is a keyword used to create an object in Java.
+        // Scanner - It is a class.
+        // System.in - System is a class and in is a variable that denotes we are taking input from standard input stream. 
+        // out - It is a variable that denotes we are taking output from standard output stream. In this case we can use System.out.println() to print the output to display a message to later take an input from the user.
+        
+        System.out.print("Enter your name: ");
+        Scanner input = new Scanner(System.in);
+
+        // next() - It will take ONE word input ONLY till a space occurs
+        // nextLine() - It will take the whole line as input.
+        System.out.println(input.next());
+        System.out.println(input.nextLine());
+
+        System.out.print("Enter a number: ");
+        // nextInt() - It a function used to take input of type int ONLY and it returns the value. 1 42 541 5 
+        // nextFloat() - It a function used to take input of type float ONLY. 1.0 42.0 541.0 5.0
+        System.out.print(input.nextInt());
+        System.out.println(input.nextFloat());
+
+        
+
+
         
     }
 }
