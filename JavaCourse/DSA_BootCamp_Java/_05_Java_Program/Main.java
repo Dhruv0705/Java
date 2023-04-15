@@ -5,6 +5,11 @@ import java.util.Scanner;
     - Input / Output
     - Primitive Data Types
     - Type Conversion and Casting
+    - Loops
+        - While Loops
+        - For Loops
+        - Temperature Program
+    - Operators
 
 
 Structure of a Java Program:
@@ -94,6 +99,11 @@ public class Main {
 
             PrimitiveDataTypes.roll();
             TypeConversionAndCasting.Casting();
+            Loops.WhileLoops();
+            Loops.ForLoops();
+            //Loops.TemperatureProgram();
+            Operators.main(args);
+            PracticeAssignments.One();
 
         }
         
@@ -123,6 +133,7 @@ public class Main {
                 System.out.print("Please enter some input: ");
                 int roll = input.nextInt();
                 System.out.println("Your roll number is: " + roll);
+                
 
             }
         }
@@ -165,8 +176,135 @@ public class Main {
             double c = 10.5;
             int d = (int) c;
             System.out.println(d);
+
+            byte byt = 50;
+            //byt = byt * 2; // This will give an error as the result of b * 2 is an int and b is a byte.
+            byt = (byte) (byt * 2); // This will work as we are casting the result of b * 2 to a byte.
+            System.out.println(byt); // prints 100
+
+            int numberA = 'A';
+            System.out.println(numberA); // Prints the ASCII value of A.
+
+
+            byte byteA = 42;
+            char charA = 'a';
+            short shortA = 1024;
+            int intA = 50000;
+            float floatA = 5.67f;
+            double doubleA = .1234;
+
+            // The result of the expression is a double.
+            // byteA is converted to int.
+            // charA is converted to int.
+            // shortA is converted to int.
+            // floatA is converted to double.
+            // doubleA is converted to double.
+            // float + int + int - double = double
+            double result = (floatA * byteA) + (intA / charA) - (doubleA * shortA);
+            System.out.println((floatA * byteA) + " + " + (intA / charA) + " - " + (doubleA * shortA));
+            System.out.println("result = " + result);
+
         }
     }
-    
+
+
+    public class Loops {
+        public static void WhileLoops(){
+            // While Loop
+            // It will execute the code inside the loop as long as the condition is true.
+            // It will check the condition first and then execute the code inside the loop.
+            // It will execute the code inside the loop at least once.
+            // It will execute the code inside the loop until the condition is false.
+            
+            // set the value of i to 0
+            int i = 0;
+
+            // while the value of i is less than 5
+            while (i < 5) {
+
+                // print the value of i
+                System.out.println(i);
+
+                // increment the value of i by 1
+                i++;
+            }
+        }
+
+        public static void ForLoops(){
+            // For Loop
+            
+            // for (initialization; condition; increment/decrement) {
+            //     // code to be executed
+            // }
+
+            // initialization - It is executed only once when the loop starts.
+            // condition - It is executed every time before the code inside the loop is executed. If the condition is true, the code inside the loop is executed. If the condition is false, the code inside the loop is not executed.
+            // increment/decrement - It is executed every time after the code inside the loop is executed.
+            
+            // start the loop from 1 and end at 5 (5 is not included) and increment the value of count by 1.
+            for (int count = 1; count < 5; count++) {
+
+                // print the value of count
+                System.out.println(count);
+            }
+        }
+
+        public static void TemperatureProgram(){
+            try (Scanner in = new Scanner(System.in)) {
+                System.out.print("Enter the temperature in Celsius: ");
+                float tempC = in.nextFloat();
+                float tempF = (tempC * 9/5) + 32;
+                System.out.println("The temperature in Fahrenheit is: " + tempF);
+            }
+        }
+    }
+
+    public class Operators {
+        public static void main(String[] args) {
+            // Assignment Operators
+            // =, +=, -=, *=, /=, %=, &=, |=, ^=, >>=, <<=
+
+            int a = 10;
+            int b = 20;
+            int c = 0;
+
+            c = a + b;
+            System.out.println("c = a + b = " + c);
+
+            c += a;
+            System.out.println("c += a = " + c);
+
+            c -= a;
+            System.out.println("c -= a = " + c);
+
+            c *= a;
+            System.out.println("c *= a = " + c);
+
+            a = 10;
+            c = 15;
+            c /= a;
+            System.out.println("c /= a = " + c);
+
+            a = 10;
+            c = 15;
+            c %= a;
+            System.out.println("c %= a = " + c);
+
+            c <<= 2;
+            System.out.println("c <<= 2 = " + c);
+
+            c >>= 2;
+            System.out.println("c >>= 2 = " + c);
+
+            c &= a;
+            System.out.println("c &= 2 = " + c);
+
+            c ^= a;
+            System.out.println("c ^= a = " + c);
+
+            c |= a;
+            System.out.println("c |= a = " + c);
+        }
+    }
 }
 
