@@ -269,6 +269,151 @@ public class FunctionsNMethods {
         }
     }
 
+    public class FunctionAssignment {
+        static boolean PrimeNumber(int n ){
+            if (n <= 1){
+                return false;
+            }
+            int i = 2;
+            while (i < n){
+                if (n % i == 0){
+                    return false;
+                }
+                i++;
+            }
+            if ( i * i > n){
+                return true;
+            }
+            return false;
+        }
+
+        static int SumOfDigits(int n){
+            int sum = 0;
+            while (n > 0){
+                sum += n % 10;
+                n /= 10;
+            }
+            return sum;
+        }
+
+        // print all the 3 digit armstrong numbers
+        static boolean ArmstrongNumbers(int n){
+            int original = n;
+            int sum = 0;
+
+            while (n > 0){
+                int rem = n % 10;
+                sum = sum + rem * rem * rem;
+                n /= 10; 
+            }
+
+            if (sum == original){
+                return  true;
+            }
+
+            return sum == original;
+
+        }
+
+        static int Factorial(int n){
+            int fact = 1;
+            for (int i = 1; i <= n; i++){
+                fact *= i;
+            }
+            return fact;
+        }
+
+        static int SumOfNaturalNumbers(int n){
+            int sum = 0;
+            for (int i = 1; i <= n; i++){
+                sum += i;
+            }
+            return sum;
+        }
+
+        static int SumOfNaturalNumbers2(int n){
+            return n * (n + 1) / 2;
+        }
+
+        static String EligibleToVote(int age){
+            if (age >= 18){
+                return "Eligible To Vote";
+            }
+            return "Not Eligible To Vote";
+        }
+
+        static String EvenOrOdd(int n){
+            if (n % 2 == 0){
+                return "Even";
+            }
+
+            return "Odd";
+        }
+
+        static int MaximumMinimum(int a, int b, int c){
+            if (a > b && a > c){
+                return a;
+            }
+            if (b > a && b > c){
+                return b;
+            }
+            return c;
+        }
+
+        static String Grade(int marks){
+            if (marks >= 90){
+                return "A";
+            }
+            if (marks >= 80){
+                return "B";
+            }
+            if (marks >= 70){
+                return "C";
+            }
+            if (marks >= 60){
+                return "D";
+            }
+            if (marks >= 50){
+                return "E";
+            }
+            return "Fail";
+        }
+
+        static String Palindrome(int n){
+            int original = n;
+            int rev = 0;
+            while (n > 0){
+                int rem = n % 10;
+                rev = rev * 10 + rem;
+                n /= 10;
+            }
+            if (rev == original){
+                return "Palindrome";
+            }
+            return "Not Palindrome";
+        }
+
+        static int Reverse(int n){
+            int rev = 0;
+            while (n > 0){
+                int rem = n % 10;
+                rev = rev * 10 + rem;
+                n /= 10;
+            }
+            return rev;
+        }
+
+        static int PrimeNumber2(int n){
+            int count = 0;
+            for (int i = 2; i <= n; i++){
+                if (PrimeNumber(i)){
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
+
 
     public static void main(String[] args){
 
@@ -295,5 +440,24 @@ public class FunctionsNMethods {
         VariablesArguments.VarArgs();
         VariablesArguments.MultipleArgs();
         FunctionsNMethods.FunctionOverloading.Call();
+
+        System.out.println(FunctionAssignment.PrimeNumber(5));
+        System.out.println(FunctionAssignment.SumOfDigits(123));
+        for (int i = 100; i < 1000; i++){
+            if (FunctionAssignment.ArmstrongNumbers(i)){
+                System.out.println(i);
+            }
+        }
+        System.out.println(FunctionAssignment.Factorial(5));
+        System.out.println(FunctionAssignment.SumOfNaturalNumbers(5));
+        System.out.println(FunctionAssignment.SumOfNaturalNumbers2(5));
+        System.out.println(FunctionAssignment.EligibleToVote(18));
+        System.out.println(FunctionAssignment.EvenOrOdd(5));
+        System.out.println(FunctionAssignment.MaximumMinimum(10, 20, 30));
+        System.out.println(FunctionAssignment.Grade(90));
+        System.out.println(FunctionAssignment.Palindrome(121));
+        System.out.println(FunctionAssignment.Reverse(123));
+        System.out.println(FunctionAssignment.PrimeNumber2(10));
+        
     }
 }
