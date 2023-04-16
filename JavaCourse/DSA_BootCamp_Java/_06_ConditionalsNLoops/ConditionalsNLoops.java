@@ -1,4 +1,5 @@
-import Math;
+//package Java.JavaCourse.DSA_BootCamp_Java._06_ConditionalsNLoops;
+import java.lang.Math;
 import java.util.Scanner;
 
 public class ConditionalsNLoops {
@@ -384,6 +385,304 @@ public class ConditionalsNLoops {
             }
             System.out.print("Area of " + AreaOfString + "= " + Area);  
         }
+
+        public static void Factorial(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter a number to find the factorial of: ");
+            int number = input.nextInt();
+            int factorial = 1;
+            for (int i = 1; i <= number; i++){
+                i *= factorial;
+            }
+            System.out.print("The factorial of " + number + " is " + factorial);
+        }
+
+        public static void ElectricBill(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the units consumed: ");
+            int units = input.nextInt();
+            double bill = 0;
+            if (units <= 50){
+                bill = units * 0.50;
+            } else if (units <= 150){
+                bill = 25 + (units - 50) * 0.75;
+            } else if (units <= 250){
+                bill = 100 + (units - 150) * 1.20;
+            } else {
+                bill = 220 + (units - 250) * 1.50;
+            }
+            System.out.print("Electric Bill = " + bill);
+        }
+
+        public static void Grade(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the marks: ");
+            int marks = input.nextInt();
+            if (marks >= 90){
+                System.out.print("Grade A");
+            } else if (marks >= 80){
+                System.out.print("Grade B");
+            } else if (marks >= 70){
+                System.out.print("Grade C");
+            } else if (marks >= 60){
+                System.out.print("Grade D");
+            } else if (marks >= 40){
+                System.out.print("Grade E");
+            } else {
+                System.out.print("Grade F");
+            }
+        }
+
+        public static void LeapYear(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the year: ");
+            int year = input.nextInt();
+            if (year % 4 == 0){
+                if (year % 100 == 0){
+                    if (year % 400 == 0){
+                        System.out.print("Leap Year");
+                    } else {
+                        System.out.print("Not a Leap Year");
+                    }
+                } else {
+                    System.out.print("Leap Year");
+                }
+            } else {
+                System.out.print("Not a Leap Year");
+            }
+        }
+
+        public static void LargestNumber(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the first number: ");
+            int number1 = input.nextInt();
+            System.out.print("Enter the second number: ");
+            int number2 = input.nextInt();
+            System.out.print("Enter the third number: ");
+            int number3 = input.nextInt();
+            if (number1 >= number2 && number1 >= number3){
+                System.out.print("Largest number is " + number1);
+            } else if (number2 >= number1 && number2 >= number3){
+                System.out.print("Largest number is " + number2);
+            } else {
+                System.out.print("Largest number is " + number3);
+            }
+        }
+
+        public static void AlphabetCaseCheck(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter a character: ");
+            char character = input.next().charAt(0);
+            if (character >= 'a' && character <= 'z'){
+                System.out.print("Lowercase");
+            } else if (character >= 'A' && character <= 'Z'){
+                System.out.print("Uppercase");
+            } else {
+                System.out.print("Invalid");
+            }
+        }
+
+        public static void Fibonacci(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the number of terms: ");
+            int terms = input.nextInt();
+            int first = 0;
+            int second = 1;
+            int next;
+            System.out.print("Fibonacci Series: ");
+            for (int i = 1; i <= terms; i++){
+                System.out.print(first + " ");
+                next = first + second;
+                first = second;
+                second = next;
+            }
+        }
+
+        public static void AverageNumber(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the number of terms: ");
+            int terms = input.nextInt();
+            int sum = 0;
+            for (int i = 1; i <= terms; i++){
+                System.out.print("Enter the number: ");
+                int number = input.nextInt();
+                sum += number;
+            }
+            System.out.print("Average = " + sum / terms);
+        }
+
+        public static void DiscountProduct(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the price of the product: ");
+            int price = input.nextInt();
+            System.out.print("Enter the discount percentage: ");
+            int discount = input.nextInt();
+            double discountedPrice = price - (price * discount / 100);
+            System.out.print("Discounted Price = " + discountedPrice);
+        }
+
+        public static void DistanceBetweenTwoPoints(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the x coordinate of the first point: ");
+            int x1 = input.nextInt();
+            System.out.print("Enter the y coordinate of the first point: ");
+            int y1 = input.nextInt();
+            System.out.print("Enter the x coordinate of the second point: ");
+            int x2 = input.nextInt();
+            System.out.print("Enter the y coordinate of the second point: ");
+            int y2 = input.nextInt();
+            double distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            System.out.print("Distance between the points = " + distance);
+        }
+
+        public static void CommissionPercentage(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the sales amount: ");
+            int sales = input.nextInt();
+            double commission;
+            if (sales >= 0 && sales <= 5000){
+                commission = sales * 0.02;
+            } else if (sales >= 5001 && sales <= 10000){
+                commission = sales * 0.05;
+            } else if (sales >= 10001 && sales <= 20000){
+                commission = sales * 0.07;
+            } else {
+                commission = sales * 0.10;
+            }
+            System.out.print("Commission = " + commission);
+        }
+
+        public static void DepreciationValue(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the cost price: ");
+            int costPrice = input.nextInt();
+            System.out.print("Enter the salvage value: ");
+            int salvageValue = input.nextInt();
+            System.out.print("Enter the life of the product: ");
+            int life = input.nextInt();
+            double depreciation = (costPrice - salvageValue) / life;
+            System.out.print("Depreciation = " + depreciation);
+        }
+
+        public static void BattingAverage(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the number of runs scored: ");
+            int runs = input.nextInt();
+            System.out.print("Enter the number of innings played: ");
+            int innings = input.nextInt();
+            System.out.print("Enter the number of not outs: ");
+            int notOuts = input.nextInt();
+            double battingAverage = runs / (innings - notOuts);
+            System.out.print("Batting Average = " + battingAverage);
+        }
+
+        public static void CompoundInterest(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the principal amount: ");
+            int principal = input.nextInt();
+            System.out.print("Enter the rate of interest: ");
+            int rate = input.nextInt();
+            System.out.print("Enter the time period: ");
+            int time = input.nextInt();
+            double compoundInterest = principal * Math.pow((1 + rate / 100), time);
+            System.out.print("Compound Interest = " + compoundInterest);
+        }
+
+        public static void ReverseString(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the string: ");
+            String string = input.nextLine();
+            String reverse = "";
+            for (int i = string.length() - 1; i >= 0; i--){
+                reverse += string.charAt(i);
+            }
+            System.out.print("Reverse String = " + reverse);
+        }
+
+        public static void SumNumber(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the number: ");
+            int number = input.nextInt();
+            int sum = 0;
+            while (number != 0){
+                sum += number % 10;
+                number /= 10;
+            }
+            System.out.print("Sum = " + sum);
+        }
+
+        public static void Palindrome(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the string: ");
+            String string = input.nextLine();
+            String reverse = "";
+            for (int i = string.length() - 1; i >= 0; i--){
+                reverse += string.charAt(i);
+            }
+            if (string.equals(reverse)){
+                System.out.print("Palindrome");
+            } else {
+                System.out.print("Not Palindrome");
+            }
+        }
+
+        public static void VowelOrConsonant(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the character: ");
+            char character = input.next().charAt(0);
+            if (character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u'){
+                System.out.print("Vowel");
+            } else {
+                System.out.print("Consonant");
+            }
+        }
+
+        public static void DayOff(){
+            // Dhruv is allowed to go out with his friends only on the even days of a given month. Write a program to count the number of days he can go out in the month of August.
+            int days = 0;
+            for (int i = 1; i <= 31; i++){
+                if (i % 2 == 0){
+                    days++;
+                }
+            }
+            System.out.print("Days = " + days);
+        }
+
+        public static void SumOfDigits(){
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter the number: ");
+            int number = input.nextInt();
+            int sum = 0;
+            while (number != 0){
+                sum += number % 10;
+                number /= 10;
+            }
+            System.out.print("Sum = " + sum);
+        }
+
+        public static void SumOfList(){
+            // Write a program to print the sum of negative numbers, sum of positive even numbers and the sum of positive odd numbers from a list of numbers (N) entered by the user. The list terminates when the user enters a zero.
+            Scanner input = new Scanner(System.in);
+            int sumOfNegative = 0;
+            int sumOfPositiveEven = 0;
+            int sumOfPositiveOdd = 0;
+            while (true){
+                System.out.print("Enter the number: ");
+                int number = input.nextInt();
+                if (number == 0){
+                    break;
+                } else if (number < 0){
+                    sumOfNegative += number;
+                } else if (number % 2 == 0){
+                    sumOfPositiveEven += number;
+                } else {
+                    sumOfPositiveOdd += number;
+                }
+            }
+            System.out.print("Sum of Negative = " + sumOfNegative + " Sum of Positive Even = " + sumOfPositiveEven + " Sum of Positive Odd = " + sumOfPositiveOdd); 
+        }
+
+        
     }
 
 
@@ -398,6 +697,27 @@ public class ConditionalsNLoops {
         ConditionalsNLoops.LoopsPractice.NumberOccurrence();
         ConditionalsNLoops.LoopsPractice.ReverseNumber();
         ConditionalsNLoops.LoopsPractice.CalculatorProgram();
+        // /* 
         ConditionalsNLoops.Assignment.AreaOf();
+        ConditionalsNLoops.Assignment.ElectricBill();
+        ConditionalsNLoops.Assignment.Grade();
+        ConditionalsNLoops.Assignment.LeapYear();
+        ConditionalsNLoops.Assignment.AlphabetCaseCheck();
+        ConditionalsNLoops.Assignment.Fibonacci();
+        ConditionalsNLoops.Assignment.AverageNumber();
+        ConditionalsNLoops.Assignment.DiscountProduct();
+        ConditionalsNLoops.Assignment.DistanceBetweenTwoPoints();
+        ConditionalsNLoops.Assignment.CommissionPercentage();
+        ConditionalsNLoops.Assignment.DepreciationValue();
+        ConditionalsNLoops.Assignment.BattingAverage();
+        ConditionalsNLoops.Assignment.CompoundInterest();
+        ConditionalsNLoops.Assignment.ReverseString();
+        ConditionalsNLoops.Assignment.SumNumber();
+        ConditionalsNLoops.Assignment.Palindrome();
+        ConditionalsNLoops.Assignment.VowelOrConsonant();
+        ConditionalsNLoops.Assignment.DayOff();
+        ConditionalsNLoops.Assignment.SumOfDigits();
+        ConditionalsNLoops.Assignment.SumOfList();
+        // */ 
     }
 }
