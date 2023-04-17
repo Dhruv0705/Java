@@ -102,6 +102,26 @@ public class ConditionalsNLoops {
             }
         }
 
+        public static void ForEachLoop(){
+            /*
+             * For-each loop is used to iterate through the elements of an array.
+             * 
+             * Syntax:
+             * for (type variableName: arrayName) {
+             * // code to be executed
+             * }
+             * 
+            */
+            
+            // Create an array of numbers
+            int[] numbers = {1, 2, 3, 4, 5};
+            
+            // for each element in numbers, print the element
+            for (int number: numbers) {
+                System.out.println(number);
+            }
+        }
+
         public static void WhileLoop() {
             /*
              * While loop is used to execute a block of code as long as a condition is true.
@@ -689,6 +709,7 @@ public class ConditionalsNLoops {
     public static void main(String[] args) {
         ConditionalsNLoops.Conditions.IfStatement();
         ConditionalsNLoops.Loops.ForLoop();
+        ConditionalsNLoops.Loops.ForEachLoop();
         ConditionalsNLoops.Loops.WhileLoop();
         ConditionalsNLoops.Loops.DoWhileLoop();
         ConditionalsNLoops.LoopsPractice.LargestNumber();
