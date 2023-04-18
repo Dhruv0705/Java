@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -55,6 +56,7 @@ public class Array {
      *         |
      *         Reference variable
      * 
+     * Every single element in the array is an array itself 
      * Contiguous memory allocation
      *   means that the memory locations are allocated in a sequential manner
      *   Memory is allocated in the heap memory and the reference variable is stored in the stack memory
@@ -71,7 +73,24 @@ public class Array {
      *   print(arr[0]); // print the first value of the array which is 3
      *   arr[3] = 5; // set the 4th value of the array to 5
      *   
-     *   
+     *   int [][] arr = {
+     *      {1,2,3}, // 0th index
+     *      {4,5}, // 1st index
+     *      {6,7,8,9} // 2nd index -> arr[2] = {6,7,8,9} -> arr[2][0] = 6
+     *  };
+     * 
+     * Length of the array
+     *  int size = arr.length; // get the size of the array
+     *  System.out.println(size); // print the size of the array
+     * 
+     *  int [][] arr = {
+     *     {1,2,3},
+     *     {4,5},
+     *     {6,7,8,9}
+     * };
+     * 
+     *  System.out.println(arr.length); // print the Number of rows
+     * 
      * 
      * 
      * 
@@ -207,9 +226,7 @@ public class Array {
              *  With each row being an array 
              *  And each column being an element of the array
             */
-            //
-
-
+        
             int [][] arr = new int[3][4];
             int [][] arr2 = {{1,2,3},{4,5,6},{7,8,9}};
             int [][] arr3 = {
@@ -234,14 +251,144 @@ public class Array {
             Scanner sc = new Scanner(System.in);
             int[][] arr = new int[3][3]; // will only work with 5 values because the size is 5
             
-            // starting at 0 if i is less than the length of the array increment loop by 1
+            // starting at the first row [0] as long as i is less then the amount of rows in the array increment loop by 1 moving to the next row
             for (int i = 0; i < arr.length; i++) {
+
+                // starting at the first element in the colum if the row index of the column is less than the length of the array increment loop by 1 moving the the next column
                 for (int j = 0; j < arr[i].length; j++) {
+
                     arr[i][j] = sc.nextInt(); // set the value of the array to the input
                 }
             }
             System.out.println(Arrays.toString(arr)); // print the array
         }
+
+        public static void ForLoopArray(){
+            int[][] arr = {{1,2,3}, {4,5}, {6,7,8,9}}; // 3 rows and 4 columns
+
+            // starting at the first element in the row if the row is less than the length of the array increment loop by 1
+            for (int row=0 ; row < arr.length ; row++) {
+                // for each column in every row index
+                for (int col=0 ; col < arr[row].length ; col++) {
+                    System.out.print(arr[row][col] + " "); // print the value of the array
+                }
+                System.out.println(); // print a new line matrix style 
+            }
+        }
+
+        public static void ForEachArray2(){
+            int[][] arr = {{1,2,3}, {4,5}, {6,7,8,9}}; // 3 rows and 4 columns
+            for(int [] row : arr) {
+                System.out.println(arr);
+            }
+        }
+
+        public static void DynamicArray () {
+            int [][] arr = {
+                {1,2,3,4},
+                {5,6},
+                {7,8,9}
+            };
+
+            for(int row = 0; row < arr.length; row++){
+                for(int col = 0; col < arr[row].length; col++){
+                    System.out.print(arr[row][col] + " ");
+                }
+                System.out.println();
+                
+            }
+        }
+
+        public static void ArrayListExampleNFunctions(){
+
+            // Syntax Create a array list of type integer with a size of 10
+            // <> means generic type that creates a type of array list that can only hold that type of Wrapper classes only.
+            ArrayList<Integer> list = new ArrayList<Integer>();
+
+            // array list functions
+            list.add(67); // adds 67 to the array list
+            list.add(89); // adds 89 to the array list
+            list.add(90); // adds 90 to the array list
+            list.add(100); // adds 100 to the array list
+            list.add(945); // adds 45 to the array list
+            list.add(216); // adds 216 to the array list
+
+
+            list.add(1, 45); // adds 45 to the array list at index 1
+            list.remove(2); // removes the value at index 2
+            list.set(0, 100); // sets the value at index 0 to 100
+            
+            System.out.println(list); // prints the array list
+            System.out.println(list.contains(90)); // checks if the array list contains 90 true or false
+        }
+
+        public static void ArrayListMultiDetention(){
+            Scanner input = new Scanner(System.in);
+            ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+            
+
+            // Initialize the array list
+            for (int i = 0; i < 3; i++) {
+                list.add(new ArrayList<Integer>());
+            }
+
+            // Add values to the array list
+            for(int i = 0; i < 3; i++){
+                for(int j = 0; j < 3; j++){
+                    list.get(i).add(input.nextInt());
+                }
+            }
+
+            // Print the array
+            for(ArrayList<Integer> row : list){
+                for(int val : row){
+                    System.out.print(val + " ");
+                }
+                System.out.println();
+            }
+
+            // Print the array 2
+            System.out.println(list);
+        }
+    }
+
+    public class Assignment {
+        public class SwapValuesInArray{
+            public static void SwapValues(){
+                int [] arr = {1,3,23,9,18};
+                swap(arr, 4, 2 );
+    
+                System.out.println(Arrays.toString(arr));
+            }
+    
+            public static void swap(int [] arr, int index, int index2){
+                int temp = arr[index];
+                arr[index] = arr[index2];
+                arr[index2] = temp;
+            }
+        }
+
+        public class MaximumValueInArray{
+            public static void MaxValue(){
+                int [] arr = {15,87,31,18,9};
+                System.out.println(max(arr));
+            }
+            
+
+            public static int max(int [] arr){
+                int max = arr[0]; // set the max value to the first element in the array
+                //int max = Integer.MIN_VALUE; // this is the smallest value that an integer can be
+                for(int i = 0; i < arr.length; i++){
+                    if(arr[i] > max){
+                        max = arr[i];
+                    }
+                }
+                return max;
+            }
+        }
+        
+
+        
     }
 
     public static void main(String[] args) {
@@ -263,5 +410,21 @@ public class Array {
         System.out.println('\n');
         Arr.MultiDimensionArray();
         Arr.TwoDInputArray();
+
+        System.out.println('\n');
+        Arr.ForLoopArray();
+
+        System.out.println('\n');
+        Arr.ForEachArray2();
+        Arr.DynamicArray();
+        Arr.ArrayListExampleNFunctions();
+
+        System.out.println('\n');
+        Arr.ArrayListMultiDetention();
+
+        System.out.println('\n');
+        Assignment.SwapValuesInArray.SwapValues();
+        Assignment.MaximumValueInArray.MaxValue();
+
     }
 }
