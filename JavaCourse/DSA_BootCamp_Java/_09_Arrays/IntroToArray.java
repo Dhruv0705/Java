@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Array {
+public class IntroToArray {
     /*
      * Arrays and ArrayList:
      *  How Arrays Work
@@ -371,14 +371,22 @@ public class Array {
         public class MaximumValueInArray{
             public static void MaxValue(){
                 int [] arr = {15,87,31,18,9};
-                System.out.println(max(arr));
+                System.out.println(maxRange(arr, 1, 3));
             }
             
 
-            public static int max(int [] arr){
-                int max = arr[0]; // set the max value to the first element in the array
+            static int maxRange(int [] arr, int start, int end){
+                
+                // edge case
+                // if array is empty
+                if (arr.length == 0){
+                    return -1;
+                }
+
+                int max = arr[start]; // set the max value to the first element in the array
                 //int max = Integer.MIN_VALUE; // this is the smallest value that an integer can be
-                for(int i = 0; i < arr.length; i++){
+
+                for(int i = start; i <= end; i++){
                     if(arr[i] > max){
                         max = arr[i];
                     }
@@ -386,7 +394,76 @@ public class Array {
                 return max;
             }
         }
+
+        public class ReverseArray {
+            public static void Reverse(){
+                int [] arr = {1,2,3,4,5};
+                reverse(arr);
+                System.out.println(Arrays.toString(arr));
+            }
+
+            static void reverse(int [] arr){
+                int start = 0;
+                int end = arr.length - 1;
+
+                while(start < end){
+                    int temp = arr[start];
+                    arr[start] = arr[end];
+                    arr[end] = temp;
+                    start++;
+                    end--;
+                }
+            }
+        }
+
+        public class RichestCustomerWealth1672 {
+            static int MaximumWealth(int [][] accounts){
+
+                /*
+
+                    Initialize the largest wealth
+                    loop through the array i will loop thought each array while j will loop through each value
+                    Initialize the sum total for the first row as i represent the first row of the array
+                    loop through each value of array index i through they array
+                    set sum to += the array of the array index [i] and the value [j] add i and j to sum
+                    if the sum is > then the max set the max to the sum 
+                    return the max.
+
+                */
+
+                int max = 0;
+                for (int i = 0; i < accounts.length; i++){
+                    int sum = 0;
+                    for (int j = 0; j < accounts[i].length; j++){
+                        sum += accounts[i][j];
+                    }
+
+                    if (sum > max){
+                        max = sum;
+                    }
+                }
+                return max;
+            }
+        }
+
+        public class ConcatenationOfArray1929 {
+            public static void Concatenation(int [] nums){
+                // create a new array with the length of the array * 2
+                int [] arr = new int[nums.length * 2];
+                for (int i = 0; i < nums.length; i++){
+
+                    // set the first half of the array to the original array
+                    arr[i] = nums[i];
+
+                    // set the second half of the array to the original array
+                    arr[i + nums.length] = nums[i];
+                }
+                System.out.println(Arrays.toString(arr));
+            }
+               
+        }
         
+
 
         
     }
@@ -425,6 +502,7 @@ public class Array {
         System.out.println('\n');
         Assignment.SwapValuesInArray.SwapValues();
         Assignment.MaximumValueInArray.MaxValue();
+        Assignment.ReverseArray.Reverse();
 
     }
 }
