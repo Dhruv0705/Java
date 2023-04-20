@@ -190,8 +190,9 @@ public class LinearSearch {
         }
 
         static int[] TwoDArray(int [][]arr, int target){
+            
             if (arr.length == 0 || arr[0].length == 0){
-                return -1;
+                return new int[] {-1, -1};
             }
 
             for (int i = 0; i < arr.length; i++){
@@ -201,14 +202,56 @@ public class LinearSearch {
                     }
                 }
             }
+            return new int[] {-1, -1};
+        }
 
-            return -1;
 
+        /*
+         * Leetcode 1295. Find Numbers with Even Number of Digits
+         * 
+         * Given an array nums of integers, return how many of them contain an even number of digits.
+         * Example 1:
+         *    Input: nums = [12,345,2,6,7896]
+         *   Output: 2
+         * Explanation:
+         *  12 contains 2 digits (even number of digits).
+         *  345 contains 3 digits (odd number of digits).
+         *  2 contains 1 digit (odd number of digits).
+         *  6 contains 1 digit (odd number of digits).
+         *  7896 contains 4 digits (even number of digits).
+         *  Therefore only 12 and 7896 contain an even number of digits.
+         */
+        static int findNumbers(int[] nums){
+            int count = 0;
+            for (int i=0 ; i<nums.length ; i++){
+                // convert the index position number to a string and check if that length is even 
+                if ((nums[i]+"").length() % 2 == 0){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        static int [][] maximumWealth(int [][] accounts){
+            int max = Integer.MIN_VALUE;
+            for (int i = 0; i < accounts.length; i++){
+
+                // when you start a new col, take the sum for that row
+                int sum = 0;
+                for (int j = 0; j < accounts[i].length; j++){
+                    sum += accounts[i][j];
+                }
+                if (sum > max){
+                    max = sum;
+                }
+            }
+            return new int[][] {{max}};
         }
     }
 
     public static void main(String[] args) {
-        int[] arr = {18, 12, 9, -7, 3, 14, 77, 50, 6};
+        int[] arr = {18, 12, 9, -72, 3, 14, 77, 50, 6};
+        int[][] arr2d = {{1,2,3}, {4,5,6}, {7,8,9}};
         int target = 14;
         System.out.println(LinearSearch.linearSearch(arr, target));
         System.out.println(LinearSearch.linearSearch2(arr, target));
@@ -219,7 +262,10 @@ public class LinearSearch {
         System.out.println('\n');
         System.out.println(LinearSearch.LinearAssignment.SearchInRange(arr, target, 1, 7));
         System.out.println(LinearSearch.LinearAssignment.MaximumNumber(arr));
-        System.out.println(LinearSearch.LinearAssignment.TwoDArray(new int[][]{{1,2,3}, {4,5,6}, {7,8,9}}, 9));
+        System.out.println(LinearSearch.LinearAssignment.TwoDArray(arr2d, 9));
+        System.out.println(LinearSearch.LinearAssignment.findNumbers(arr));
+        System.out.println(LinearSearch.LinearAssignment.maximumWealth(arr2d));
+
     }
 }
     

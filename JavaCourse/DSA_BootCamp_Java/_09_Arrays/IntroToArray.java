@@ -503,6 +503,10 @@ public class IntroToArray {
         Assignment.SwapValuesInArray.SwapValues();
         Assignment.MaximumValueInArray.MaxValue();
         Assignment.ReverseArray.Reverse();
+        Assignment.RichestCustomerWealth1672.MaximumWealth(new int[][]{{1,2,3},{3,2,1}});
+        Assignment.ConcatenationOfArray1929.Concatenation(new int[]{1,2,1});
+        
+
 
     }
 }
