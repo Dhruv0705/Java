@@ -1,3 +1,5 @@
+import javax.management.remote.TargetedNotification;
+
 public class BinarySearch {
 
     /*
@@ -89,7 +91,6 @@ public class BinarySearch {
             // int mid = (start + end) / 2; // This can cause integer overflow if the sum of start and end is greater than the range of int causing exceeding the range of int and giving a negative number
             int mid = start + (end - start) / 2; // This is the better way to find the middle element
             if (target < arr[mid]) {
-
                 // Search in the left half
                 end = mid - 1;
             } else if (target > arr[mid]) {
@@ -133,12 +134,120 @@ public class BinarySearch {
         return -1;
     }
 
+    public static int OrderAgnosticBinarySearch(int []arr, int target){
+        int start = 0;
+        int end = arr.length - 1;
+
+        // find whether the array is sorted in ascending or descending order
+        boolean isAscending;
+
+        // if the array is sorted in ascending order
+        if (arr[start] < arr[end]){
+            isAscending = true;
+        }
+
+        // if the array is sorted in descending order
+        else {
+            isAscending = false;
+        }
+
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+
+            if (isAscending){
+                if (target < arr[mid]){
+                    end = mid - 1;
+                }
+
+                else if (target > arr[mid]){
+                    start = mid + 1;
+                }
+
+                else {
+                    return mid;
+                }
+            }
+
+            else{
+                if (target > arr[mid]){
+                    end = mid - 1;
+                }
+
+                else if (target < arr[mid]){
+                    start = mid + 1;
+                }
+
+                else {
+                    return mid;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    public static int PracticeAscendingBinarySearch(int arr[], int target){
+        int start = 0;
+        int end = arr.length - 1;
+        while (start <= end){
+            int midpoint = start + (end - start) / 2;
+            if (target > arr[midpoint]){
+                start = midpoint + 1;
+            } else if (target < arr[midpoint]){
+                end = midpoint - 1;
+            } else {
+                return midpoint;
+            }
+        }
+        return - 1;
+    }
+
+    public static int PracticeOrderAgnosticBinarySearch(int arr[], int target){
+        int start = 0;
+        int end = arr.length -1;
+
+        boolean isAscending;
+        if (arr[start] < arr[end]){
+            isAscending = true;
+        }
+        else{
+            isAscending = false;
+        }
+        
+        while (start <= end){
+            int midpoint = start + (end - start) / 2;
+
+            if (isAscending){
+                if (target > arr[midpoint]){
+                    start = midpoint + 1;
+                } else if (target < arr[midpoint]){
+                    end = midpoint - 1;
+                } else {
+                    return midpoint;
+                }
+            }
+            else {
+                if (target < arr[midpoint]){
+                    start = midpoint + 1;
+                } else if (target > arr[midpoint]){
+                    end = midpoint - 1;
+                } else {
+                    return midpoint;
+                }
+            }
+        }
+        
+        return -1;
+    }
+
     public static void main(String[] args) {
         int [] arr = {-18, -12, -4, 0, 2, 3, 4, 5, 15, 16, 18, 22, 45, 67, 89, 90, 100};
-        int [] arr2 = {90, 75, 18, 12, 6, 4, 3, 1};
+        int [] arr2 = {100, 90, 89, 67, 45, 22, 18, 16, 15, 5, 4, 3, 2, 0, -4, -12, -18};
         int target = 22;
         System.out.println(AscendingSortedBinarySearch(arr, target)); // 11
-        System.out.println(DescendingSortedBinarySearch(arr2, 75)); // 1
-
+        System.out.println(DescendingSortedBinarySearch(arr2, target)); // 1
+        System.out.println(OrderAgnosticBinarySearch(arr2, target)); // 2
+        System.out.println(PracticeAscendingBinarySearch(arr, target));
+        System.out.println(PracticeOrderAgnosticBinarySearch(arr2, target));
     }
 }
