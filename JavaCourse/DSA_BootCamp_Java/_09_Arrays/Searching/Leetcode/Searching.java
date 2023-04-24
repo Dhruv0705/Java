@@ -1,5 +1,7 @@
 import java.util.Arrays;
 
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonAreaLayout;
+
 public class Searching {
 
     /*
@@ -553,9 +555,238 @@ public class Searching {
         // pivot is not found
         return -1;
     }
+    
+    static int FindPivotDuplicates(int [] arr){
+        int start = 0;
+        int end = arr.length - 1;
 
+        while (start <= end){
+            int midpoint = start + (end - start) / 2;
+            if (midpoint < end && arr[midpoint] > arr[midpoint + 1]){
+                return midpoint;
+            }
+            if (midpoint > start && arr[midpoint] < arr[midpoint - 1]){
+                return midpoint - 1;
+            }
 
+            // if elements at pointers are equal then skip the duplicates
+            if (arr[start] == arr[midpoint] && arr[end] == arr[midpoint]){
+                // skip the duplicates
+                // NOTE: what if these elements at pointers were the pivot?
+                // check if start is pivot
+                if (arr[start] > arr[start + 1]){
+                    return start;
+                }
+                // NOTE: end can not be pivot here because end > start and we already checked for end - 1
+                // move start to the next element to check if it is higher then the next element
+                start++;
 
+                // check whether end is pivot
+                if (arr[end] < arr[end - 1]){
+                    return end - 1;
+                }
+                end--;
+            }
+            // left side is sorted so pivot should be on right side
+            else if (arr[start] < arr[midpoint] || (arr[start] == arr[midpoint] && arr[midpoint] > arr[end])){
+                start = midpoint + 1;
+            }
+            // right side is sorted so pivot should be on left side
+            else {
+                end = midpoint - 1;
+            }
+        }
+        // pivot is not found
+        return -1;
+    }
+
+    /* Find the Rotation Count in Rotated Sorted array [MEDIUM]
+     *  https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/
+     * 
+     *     Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+     *      (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
+     *       Find the minimum element.
+     *      The array may contain duplicates.
+     *  
+     *      Input: [3,4,5,1,2]
+     *      Output: 3
+     * 
+     *      Input: [2,2,2,0,1]
+     *      Output: 4    
+     * 
+    */
+
+    static int FindRotationCountInRotatedSortedArray(int [] arr){
+        int pivot = FindPivotDuplicates(arr);
+        return pivot + 1;
+    }
+
+    /* Search in Rotated Sorted Array II [MEDIUM]
+     *  https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+     * 
+     *  Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+     *  (i.e., [0,0,1,2,2,5,6] might become [2,5,6,0,0,1,2]).
+     *  You are given a target value to search. If found in the array return true, otherwise return false.
+     * 
+     *  Input: nums = [2,5,6,0,0,1,2], target = 0
+     *  Output: true
+     * 
+     *  Input: nums = [2,5,6,0,0,1,2], target = 3
+     *  Output: false
+     * 
+     *  Input: nums = [1], target = 0
+     *  Output: false
+    */ 
+
+    static boolean SearchInRotatedSortedArrayII(int [] arr, int target){
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start <= end){
+            int midpoint = start + (end - start) / 2;
+
+            if (arr[midpoint] == target){
+                return true;
+            }
+            // if numbers at start, midpoint, and end are same then just skip the duplicates
+            if (arr[start] == arr[midpoint] && arr[end] == arr[midpoint]){
+                start++;
+                end--;
+            }
+            // left side is sorted so pivot should be on right side
+            else if (arr[start] < arr[midpoint] || (arr[start] == arr[midpoint] && arr[midpoint] > arr[end])){
+                if (target >= arr[start] && target < arr[midpoint]){
+                    end = midpoint - 1;
+                }
+                else {
+                    start = midpoint + 1;
+                }
+            }
+            // right side is sorted so pivot should be on left side
+            else {
+                if (target > arr[midpoint] && target <= arr[end]){
+                    start = midpoint + 1;
+                }
+                else {
+                    end = midpoint - 1;
+                }
+            }
+        }
+        return false;
+    }
+
+    /* Leetcode 410. Split Array Largest Sum [HARD] 
+     *  https://leetcode.com/problems/split-array-largest-sum/
+     *  
+     *    Given an array which consists of non-negative integers and an integer m,
+     *      you can split the array into m non-empty continuous subarrays.
+     *      Write an algorithm to minimize the largest sum among these m subarrays.
+     * 
+     * Input: nums = [7,2,5,10,8], m = 2
+     * Output: 18
+     * Explanation:
+     *      There are four ways to split nums into two subarrays.
+     *      The best way is to split it into [7,2,5] and [10,8],
+     *      where the largest sum among the two subarrays is only 18.
+     * 
+     * 
+     * Input: nums = [1,2,3,4,5], m = 2
+     * Output: 9
+     * 
+     * Input: nums = [1,4,4], m = 3
+     * Output: 4
+     * 
+    */
+
+    //
+    public int splitArray(int [] nums, int k){
+        // Initialize start to the max number in the array
+        int start = 0;
+        int end = 0;
+
+        // for each number in the array, find the max number and the sum of all numbers
+        for (int num : nums){
+            start = Math.max(start, num);
+            end += num;
+        }
+
+        // binary search to find the minimum largest sum
+        while (start < end){
+            int mid = start + (end - start) / 2;
+            int sum = 0;
+            int count = 1;
+
+            for (int num : nums){
+                sum += num;
+                if (sum > mid){
+                    sum = num;
+                    count++;
+                }
+            }
+            if (count > k){
+                start = mid + 1;
+            }
+            else {
+                end = mid;
+            }
+        }
+
+        return start;
+    }
+
+    //
+    public int splitArray2(int [] nums, int m){
+
+        int start = 0;
+        int end = 0;
+
+        for (int i = 0; i < nums.length; i++){
+            // find the max number in the array in the end of the loop this will 
+            //  contain the max item from the array.
+            start = Math.max(start, nums[i]); 
+            // find the sum of all numbers in the array
+            end += nums[i];
+        }
+
+        // binary search to find the minimum largest sum
+        while (start < end){
+            // try for the middle as the largest sum
+            int midpoint = start + (end - start) / 2;
+
+            // calculate how many pieces you can divide the array into with the largest sum
+            int sum = 0;
+            int pieces = 1; // start with 1 piece as the array is not divided yet
+
+            for (int num : nums){
+
+                // if the sum of the current number and the sum of the previous numbers is 
+                if (sum + num > midpoint){
+
+                    // reset the sum to the current number
+                    sum = num;
+                    pieces++;
+                }
+                else {
+                    // add the current number to the sum
+                    sum += num;
+                }
+            }
+
+            // if the number of pieces is greater than the number of pieces allowed
+            //  then the largest sum is too small
+            if (pieces > m){
+                // increase the largest sum
+                start = midpoint + 1;
+            }
+            else {
+                // decrease the largest sum
+                end = midpoint;
+            }
+
+        }
+        return start; // return the minimum largest sum 
+    }   
+    
 
     public static void main(String[] args) {
         int [] arr = {2,3,5,9,14,16,18};
@@ -593,7 +824,14 @@ public class Searching {
         int [] nums33 = {4,5,6,7,0,1,2};
         int target33 = 3;
         System.out.println(SearchInRotatedSortedArray33(nums33, target33));
-    
+        
+        int [] nums81 = {2,5,6,0,0,1,2};
+        int target81 = 0;
+        System.out.println(SearchInRotatedSortedArrayII(nums81, target81));
+
+        int [] nums153 = {4,5,6,7,0,1,2};
+        System.out.println(FindRotationCountInRotatedSortedArray(nums153));
+
         
     
     }
