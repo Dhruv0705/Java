@@ -54,6 +54,7 @@ public class BinarySearch2dArray{
                 col--;
             }
         }
+        
         return new int[]{-1, -1};
     }
 
@@ -79,7 +80,6 @@ public class BinarySearch2dArray{
     public SortedMatrixSearch(int[][] matrix, int target){
         
     }
-
 
     public static void main(String[] args) {
         
