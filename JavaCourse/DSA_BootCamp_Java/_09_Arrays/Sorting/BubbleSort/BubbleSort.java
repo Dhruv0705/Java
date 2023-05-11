@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class BubbleSort {
 
     /*
@@ -30,13 +32,67 @@ public class BubbleSort {
      *  1, 3, 2, 4, 5 | 3 > 2, swap them
      *  1, 2, 3, 4, 5 | 3 < 4, do not swap them
      * 
-     *  
-     * 
+     *  Time Complexity: Best case: O(n) Worst case: O(n^2) 
+     *  Space Complexity: O(1) Constant Space
      * 
      * 
     */
 
-    public static void main(String[] args) {
+    static void bubble(int [] arr){
+
+        // test case
+        if (arr.length == 0) {
+            return;
+        }
         
+        boolean swapped;
+
+        // run the steps n-1 times
+        for(int i = 0; i < arr.length; i++) {
+            swapped = false;
+
+            // for each step, max item will come at the last respective index
+            for (int j = 1; j <arr.length - i; j++) {
+
+                // swap if the item is smaller than the previous item
+                if (arr[j] < arr[j - 1]) {
+                    // swap
+                    int temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                    swapped = true; // if swapping happens update swapped to true
+                } 
+            }
+        // if you did not swap for a particular value of i, it means the array is sorted hence stop the program
+        if (!swapped) {
+            return;
+        }
+
+        }
+    }
+
+    static void bubble2(int[] arr){
+        boolean swapped;
+        for (int i = 0; i < arr.length; i++){
+            swapped = false;
+            for (int j = 1; j < arr.length - i; j++){
+                if (arr[j] < arr[j-1]){
+                    int temp = arr[j]; 
+                    arr[j] = arr[j-1]; 
+                    arr[j-1] = temp; 
+                }
+            }
+        if (!swapped){
+            break;
+        }
+        }
+    }
+
+    public static void main(String[] args) {
+        int [] arr = {1, 3, 5, 4, 2};
+        bubble(arr);
+        System.out.println(Arrays.toString(arr));
+        bubble2(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
