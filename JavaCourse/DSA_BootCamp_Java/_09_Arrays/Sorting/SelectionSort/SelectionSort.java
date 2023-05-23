@@ -14,6 +14,9 @@ public class SelectionSort {
      *  2, 3, 1, 4, 5
      *  2, 1, 3, 4, 5
      *  1, 2, 3, 4, 5
+     * 
+     *  Time Complexity: O(n^2)
+     *  
      *  
      */
     static void selection(int[] arr){
